@@ -357,121 +357,220 @@ export default function ACLSTool() {
   // Translations
   const TRANSLATIONS = {
     hi: {
-      shock: "Defibrillation ka samay hai. Turant shock dein.",
-      rosc_check: "ROSC ki jaanch karein. C P R rokein, pulse aur rhythm check karein.",
-      epinephrine: "Epinephrine ka samay ho gaya hai. Abhi ek milligram dein.",
-      amiodarone_300: "Amiodarone ka samay hai. Teen-sau milligram dein.",
-      amiodarone_150: "Amiodarone ka samay hai. Ek-sau-pachaas milligram dein.",
-      atropine: "Atropine ek milligram dein.",
-      adenosine: "Adenosine rapid bolus par vichaar karein.",
-      pacing: "Transcutaneous pacing ya infusion par vichaar karein.",
-      unstable: "Rhythm unstable hai. Synchronized cardioversion taiyaar karein.",
-      start_cpr: "Abhi C P R shuru karein.",
-      rhythm_check_10s: "Das second mein rhythm check ke liye taiyaar rahein.",
+      shock: "Defibrillation ka samay hai. Sabhi log hat jao. Patient ko clear karo. Abhi 200 joule ka shock dein.",
+      rosc_check: "C P R rokein. Pulse aur rhythm check karein. ROSC ki jaanch karein.",
+      epinephrine: "Epinephrine deine ka samay ho gaya. Abhi ek milligram IV ya I O push dein. Timer reset hoga.",
+      amiodarone_300: "Teen-sau milligram Amiodarone IV dein. Teen shocks ke baad dena zaroori hai.",
+      amiodarone_150: "Ek-sau-pachaas milligram Amiodarone dein. Yeh doosri khurak hai.",
+      atropine: "Atropine ek milligram IV dein. Yeh bradycardia ke liye hai.",
+      adenosine: "Adenosine six milligram rapid bolus dein. Saline flush ke saath.",
+      pacing: "Atropine ki maximum dose ho gayi. Transcutaneous pacing ya Dopamine infusion shuru karein.",
+      unstable: "Patient unstable hai. Takat synchronized cardioversion ke liye taiyaar karein. Sedation dein.",
+      start_cpr: "CPR shuru karein. 30 compression aur 2 saans. 100 se 120 per minute. Do inch ki gehraai.",
+      rhythm_check_10s: "10 second mein rhythm check hoga. CPR rok lein aur ready rahein.",
+      rosc_achieved: "ROSC prapt ho gaya! Spontaneous circulation wapas aa gayi. Post cardiac arrest care shuru karein.",
+      check_responsiveness: "Kaandhon ko hilaakar response check karein. Awaz lagao Are you okay?",
+      call_for_help: "Emergency response activate karo. AED mangao. Code team bulao.",
+      check_pulse: "Carotid pulse check karein. Teen se das second mein hona chahiye.",
+      attach_monitor: "Defibrillator pads attach karein. Rhythm dekho.",
+      shockable: "VF ya VT detect hua. Shockable rhythm. Defibrillation ki taiyaari karein.",
+      non_shockable: "Non shockable rhythm hai. Asystole ya PEA. CPR continue karein aur Epinephrine dein.",
+      consider_causes: "Reversible causes dhundo. H's aur T's yaad karein. Hypovolemia, Hypoxia, Tension pneumothorax.",
+      cardioversion_done: "Cardioversion complete. Patient ka response dekho. Pulse aur rhythm check karein.",
+      good_cpr: "CPR achhi tarah ho rahi hai. Rate 100 se 120, gehraai 2 inch. Jari rakho.",
+      cycle_complete: "CPR cycle complete. Rhythm check ki taiyaari karein.",
     },
-    mr: { // Marathi
-      shock: "Defibrillation ची वेळ झाली आहे. ताबडतोब shock द्या.",
-      rosc_check: "ROSC तपासा. CPR थांबवा, pulse आणि rhythm तपासा.",
-      epinephrine: "Epinephrine ची वेळ झाली आहे. आता एक milligram द्या.",
-      amiodarone_300: "Amiodarone ची वेळ झाली आहे. ३०० milligram द्या.",
-      amiodarone_150: "Amiodarone ची वेळ झाली आहे. १५० milligram द्या.",
-      atropine: "Atropine १.० milligram द्या.",
-      adenosine: "Adenosine rapid bolus चा विचार करा.",
-      pacing: "Transcutaneous pacing किंवा infusion चा विचार करा.",
-      unstable: "Rhythm unstable आहे. Synchronized cardioversion तयार ठेवा.",
-      start_cpr: "आता CPR सुरू करा.",
-      rhythm_check_10s: "दहा सेकंदात rhythm check साठी तयार रहा.",
+    mr: {
+      shock: "Defibrillation ची वेळ झाली. सर्वांनी बाजूला व्हा. रुग्णाला clear करा. आता 200 joule shock द्या.",
+      rosc_check: "CPR थांबवा. Pulse आणि rhythm तपासा. ROSC तपासा.",
+      epinephrine: "Epinephrine देण्याची वेळ झाली. आता एक milligram IV किंवा IO push द्या.",
+      amiodarone_300: "300 milligram Amiodarone IV द्या. तीन shocks नंतर आवश्यक आहे.",
+      amiodarone_150: "150 milligram Amiodarone द्या. ही दुसरी मात्रा आहे.",
+      atropine: "Atropine एक milligram IV द्या. हे bradycardia साठी आहे.",
+      adenosine: "Adenosine सहा milligram rapid bolus द्या. Saline flush सोबत.",
+      pacing: "Atropine ची जास्तीत जास्त मात्रा झाली. Transcutaneous pacing किंवा Dopamine infusion सुरू करा.",
+      unstable: "रुग्ण unstable आहे. Synchronized cardioversion साठी तयार व्हा. Sedation द्या.",
+      start_cpr: "CPR सुरू करा. 30 compression आणि 2 श्वास. 100 ते 120 प्रति मिनिट. दोन इंच खोली.",
+      rhythm_check_10s: "10 सेकंदात rhythm check होईल. CPR थांबवण्यासाठी तयार रहा.",
+      rosc_achieved: "ROSC मिळाले! उत्स्फूर्त circulation परत आली. Post cardiac arrest care सुरू करा.",
+      check_responsiveness: "खांद्यांना हलवून response तपासा.",
+      call_for_help: "Emergency response सक्रिय करा. AED मागवा.",
+      check_pulse: "Carotid pulse तपासा. तीन ते दहा सेकंदात.",
+      attach_monitor: "Defibrillator pads लावा. Rhythm पहा.",
+      shockable: "VF किंवा VT आढळले. Shockable rhythm. Defibrillation तयार करा.",
+      non_shockable: "Non shockable rhythm. Asystole किंवा PEA. CPR सुरू ठेवा आणि Epinephrine द्या.",
+      consider_causes: "Reversible causes शोधा. H's आणि T's आठवा.",
+      cardioversion_done: "Cardioversion पूर्ण. रुग्णाचा response पहा.",
+      good_cpr: "CPR चांगली होत आहे. Rate 100 ते 120, खोली 2 इंच.",
+      cycle_complete: "CPR cycle पूर्ण. Rhythm check ची तयारी करा.",
     },
-    ta: { // Tamil
-      shock: "Defibrillation நேரம் இது. உடனடியாக shock கொடுங்கள்.",
-      rosc_check: "ROSC ஐச் சரிபார்க்கவும். CPR ஐ நிறுத்தி, pulse மற்றும் rhythm ஐச் சரிபார்க்கவும்.",
-      epinephrine: "Epinephrine கொடுக்க வேண்டிய நேரம் இது. இப்போது ஒரு milligram கொடுங்கள்.",
-      amiodarone_300: "Amiodarone நேரம். ৩০০ milligram கொடுங்கள்.",
-      amiodarone_150: "Amiodarone நேரம். ১৫০ milligram கொடுங்கள்.",
-      atropine: "Atropine १.० milligram கொடுங்கள்.",
-      adenosine: "Adenosine rapid bolus ஐப் பரிசீலிக்கவும்.",
-      pacing: "Transcutaneous pacing அல்லது infusion ஐப் பரிசீலிக்கவும்.",
-      unstable: "Rhythm unstable ஆக உள்ளது. Synchronized cardioversion தயார் செய்யவும்.",
-      start_cpr: "இப்போது CPR ஐத் தொடங்குங்கள்.",
-      rhythm_check_10s: "பத்து வினாடிகளில் rhythm check க்குத் தயாராகுங்கள்.",
+    ta: {
+      shock: "Defibrillation நேரம். அனைவரும் விலகுங்கள். நோயாளியை clear செய்யுங்கள். இப்போது 200 joule shock கொடுங்கள்.",
+      rosc_check: "CPR நிறுத்துங்கள். Pulse மற்றும் rhythm சரிபார்க்கவும். ROSC சரிபார்க்கவும்.",
+      epinephrine: "Epinephrine நேரம். ஒரு milligram IV அல்லது IO push இப்போது கொடுங்கள்.",
+      amiodarone_300: "300 milligram Amiodarone IV கொடுங்கள்.",
+      amiodarone_150: "150 milligram Amiodarone கொடுங்கள்.",
+      atropine: "Atropine ஒரு milligram IV கொடுங்கள்.",
+      adenosine: "Adenosine ஆறு milligram rapid bolus கொடுங்கள்.",
+      pacing: "Transcutaneous pacing அல்லது Dopamine infusion தொடங்குங்கள்.",
+      unstable: "நோயாளி unstable. Synchronized cardioversion தயார் செய்யுங்கள்.",
+      start_cpr: "CPR ஆரம்பிக்கவும். நிமிடத்திற்கு 100 முதல் 120 compression.",
+      rhythm_check_10s: "10 வினாடிகளில் rhythm check. CPR நிறுத்த தயாராகுங்கள்.",
+      rosc_achieved: "ROSC கிடைத்தது! Post cardiac arrest care ஆரம்பிக்கவும்.",
+      check_responsiveness: "தோள்களை அசைத்து response சரிபார்க்கவும்.",
+      call_for_help: "Emergency response செயல்படுத்துங்கள். AED வாங்குங்கள்.",
+      check_pulse: "Carotid pulse சரிபார்க்கவும்.",
+      attach_monitor: "Defibrillator pads இணைக்கவும்.",
+      shockable: "VF அல்லது VT கண்டறியப்பட்டது. Shockable rhythm. Defibrillation தயார் செய்யுங்கள்.",
+      non_shockable: "Non shockable rhythm. CPR தொடரவும். Epinephrine கொடுங்கள்.",
+      consider_causes: "Reversible causes தேடுங்கள்.",
+      cardioversion_done: "Cardioversion முடிந்தது. நோயாளியின் response பார்க்கவும்.",
+      good_cpr: "CPR நன்றாக நடக்கிறது.",
+      cycle_complete: "CPR cycle முடிந்தது. Rhythm check தயார்.",
     },
-    te: { // Telugu
-      shock: "Defibrillation సమయం ఆసన్నమైంది. వెంటనే shock ఇవ్వండి.",
-      rosc_check: "ROSC కోసం తనిఖీ చేయండి. CPR ని ఆపండి, pulse మరియు rhythm తనిఖీ చేయండి.",
-      epinephrine: "Epinephrine ఇచ్చే సమయం. ఇప్పుడు ఒక milligram ఇవ్వండి.",
-      amiodarone_300: "Amiodarone సమయం. 300 milligram ఇవ్వండి.",
-      amiodarone_150: "Amiodarone సమయం. 150 milligram ఇవ్వండి.",
-      atropine: "Atropine 1.0 milligram ఇవ్వండి.",
-      adenosine: "Adenosine rapid bolus గురించి ఆలోచించండి.",
-      pacing: "Transcutaneous pacing లేదా infusion గురించి ఆలోచించండి.",
-      unstable: "Rhythm unstable గా ఉంది. Synchronized cardioversion సిద్ధం చేయండి.",
-      start_cpr: "ఇప్పుడే CPR ప్రారంభించండి.",
-      rhythm_check_10s: "పది సెకన్లలో rhythm check కోసం సిద్ధంగా ఉండండి.",
+    te: {
+      shock: "Defibrillation సమయం. అందరూ పక్కకు వెళ్ళండి. రోగిని clear చేయండి. ఇప్పుడు 200 joule shock ఇవ్వండి.",
+      rosc_check: "CPR ఆపండి. Pulse మరియు rhythm తనిఖీ చేయండి. ROSC కోసం తనిఖీ చేయండి.",
+      epinephrine: "Epinephrine సమయం. ఒక milligram IV లేదా IO push ఇప్పుడు ఇవ్వండి.",
+      amiodarone_300: "300 milligram Amiodarone IV ఇవ్వండి.",
+      amiodarone_150: "150 milligram Amiodarone ఇవ్వండి.",
+      atropine: "Atropine ఒక milligram IV ఇవ్వండి.",
+      adenosine: "Adenosine ఆరు milligram rapid bolus ఇవ్వండి.",
+      pacing: "Transcutaneous pacing లేదా Dopamine infusion ప్రారంభించండి.",
+      unstable: "రోగి unstable. Synchronized cardioversion సిద్ధం చేయండి.",
+      start_cpr: "CPR ప్రారంభించండి. నిమిషానికి 100 నుండి 120 compressions.",
+      rhythm_check_10s: "10 సెకన్లలో rhythm check. CPR ఆపడానికి సిద్ధంగా ఉండండి.",
+      rosc_achieved: "ROSC సాధించబడింది! Post cardiac arrest care ప్రారంభించండి.",
+      check_responsiveness: "భుజాలను కదిలించి response తనిఖీ చేయండి.",
+      call_for_help: "Emergency response సక్రియం చేయండి. AED తీసుకురండి.",
+      check_pulse: "Carotid pulse తనిఖీ చేయండి.",
+      attach_monitor: "Defibrillator pads అమర్చండి.",
+      shockable: "VF లేదా VT గుర్తించబడింది. Defibrillation సిద్ధం చేయండి.",
+      non_shockable: "Non shockable rhythm. CPR కొనసాగించండి. Epinephrine ఇవ్వండి.",
+      consider_causes: "Reversible causes వెతకండి.",
+      cardioversion_done: "Cardioversion పూర్తయింది. రోగి response చూడండి.",
+      good_cpr: "CPR బాగా జరుగుతోంది.",
+      cycle_complete: "CPR cycle పూర్తయింది. Rhythm check సిద్ధం చేయండి.",
     },
-    bn: { // Bengali
-      shock: "Defibrillation এর সময় হয়েছে। অবিলম্বে shock দিন।",
-      rosc_check: "ROSC পরীক্ষা করুন। CPR বন্ধ করুন, pulse এবং rhythm পরীক্ষা করুন।",
-      epinephrine: "Epinephrine এর সময় হয়েছে। এখন এক milligram দিন।",
-      amiodarone_300: "Amiodarone এর সময়। ৩০০ milligram দিন।",
-      amiodarone_150: "Amiodarone এর সময়। ১৫০ milligram দিন।",
-      atropine: "Atropine ১.০ milligram দিন।",
-      adenosine: "Adenosine rapid bolus এর কথা বিবেচনা করুন।",
-      pacing: "Transcutaneous pacing বা infusion এর কথা বিবেচনা করুন।",
-      unstable: "Rhythm unstable। Synchronized cardioversion তৈরি করুন।",
-      start_cpr: "এখনই CPR শুরু করুন।",
-      rhythm_check_10s: "দশ সেকেন্ডের মধ্যে rhythm check এর জন্য প্রস্তুত হন।",
+    bn: {
+      shock: "Defibrillation এর সময় হয়েছে। সবাই সরে যান। রোগীকে clear করুন। এখনই 200 joule shock দিন।",
+      rosc_check: "CPR বন্ধ করুন। Pulse এবং rhythm পরীক্ষা করুন। ROSC পরীক্ষা করুন।",
+      epinephrine: "Epinephrine এর সময় হয়েছে। এখন এক milligram IV বা IO push দিন।",
+      amiodarone_300: "300 milligram Amiodarone IV দিন।",
+      amiodarone_150: "150 milligram Amiodarone দিন।",
+      atropine: "Atropine এক milligram IV দিন।",
+      adenosine: "Adenosine ছয় milligram rapid bolus দিন।",
+      pacing: "Transcutaneous pacing বা Dopamine infusion শুরু করুন।",
+      unstable: "রোগী unstable। Synchronized cardioversion প্রস্তুত করুন।",
+      start_cpr: "CPR শুরু করুন। প্রতি মিনিটে 100 থেকে 120 compression।",
+      rhythm_check_10s: "10 সেকেন্ডে rhythm check। CPR বন্ধ করতে প্রস্তুত থাকুন।",
+      rosc_achieved: "ROSC অর্জিত হয়েছে! Post cardiac arrest care শুরু করুন।",
+      check_responsiveness: "কাঁধে হাত দিয়ে response পরীক্ষা করুন।",
+      call_for_help: "Emergency response সক্রিয় করুন। AED আনুন।",
+      check_pulse: "Carotid pulse পরীক্ষা করুন।",
+      attach_monitor: "Defibrillator pads লাগান।",
+      shockable: "VF বা VT পাওয়া গেছে। Defibrillation প্রস্তুত করুন।",
+      non_shockable: "Non shockable rhythm। CPR চালিয়ে যান। Epinephrine দিন।",
+      consider_causes: "Reversible causes খুঁজুন।",
+      cardioversion_done: "Cardioversion সম্পন্ন। রোগীর response দেখুন।",
+      good_cpr: "CPR ভালো হচ্ছে।",
+      cycle_complete: "CPR cycle সম্পূর্ণ। Rhythm check প্রস্তুত।",
     },
-    kn: { // Kannada
-      shock: "Defibrillation ಸಮಯ ಬಂದಿದೆ. ಕೂಡಲೇ shock ನೀಡಿ.",
-      rosc_check: "ROSC ಗಾಗಿ ಪರೀಕ್ಷಿಸಿ. CPR ನಿಲ್ಲಿಸಿ, pulse ಮತ್ತು rhythm ಪರೀಕ್ಷಿಸಿ.",
-      epinephrine: "Epinephrine ನೀಡುವ ಸಮಯ. ಈಗ ಒಂದು milligram ನೀಡಿ.",
-      amiodarone_300: "Amiodarone ಸಮಯ. ೩೦೦ milligram ನೀಡಿ.",
-      amiodarone_150: "Amiodarone ಸಮಯ. ೧೫೦ milligram ನೀಡಿ.",
-      atropine: "Atropine ೧.೦ milligram ನೀಡಿ.",
-      adenosine: "Adenosine rapid bolus ಬಗ್ಗೆ ಪರಿಗಣಿಸಿ.",
-      pacing: "Transcutaneous pacing ಅಥವಾ infusion ಬಗ್ಗೆ ಪರಿಗಣಿಸಿ.",
-      unstable: "Rhythm unstable ಆಗಿದೆ. Synchronized cardioversion ಸಿದ್ಧಪಡಿಸಿ.",
-      start_cpr: "ಈಗಲೇ CPR ಪ್ರಾರಂಭಿಸಿ.",
-      rhythm_check_10s: "ಹತ್ತು ಸೆಕೆಂಡುಗಳಲ್ಲಿ rhythm check ಗಾಗಿ ಸಿದ್ಧರಾಗಿ.",
+    kn: {
+      shock: "Defibrillation ಸಮಯ. ಎಲ್ಲರೂ ದೂರ ಸರಿಯಿರಿ. ರೋಗಿಯನ್ನು clear ಮಾಡಿ. ಈಗ 200 joule shock ನೀಡಿ.",
+      rosc_check: "CPR ನಿಲ್ಲಿಸಿ. Pulse ಮತ್ತು rhythm ಪರೀಕ್ಷಿಸಿ. ROSC ಗಾಗಿ ಪರೀಕ್ಷಿಸಿ.",
+      epinephrine: "Epinephrine ಸಮಯ. ಒಂದು milligram IV ಅಥವಾ IO push ಈಗ ನೀಡಿ.",
+      amiodarone_300: "300 milligram Amiodarone IV ನೀಡಿ.",
+      amiodarone_150: "150 milligram Amiodarone ನೀಡಿ.",
+      atropine: "Atropine ಒಂದು milligram IV ನೀಡಿ.",
+      adenosine: "Adenosine ಆರು milligram rapid bolus ನೀಡಿ.",
+      pacing: "Transcutaneous pacing ಅಥವಾ Dopamine infusion ಪ್ರಾರಂಭಿಸಿ.",
+      unstable: "ರೋಗಿ unstable. Synchronized cardioversion ಸಿದ್ಧಪಡಿಸಿ.",
+      start_cpr: "CPR ಪ್ರಾರಂಭಿಸಿ. ನಿಮಿಷಕ್ಕೆ 100 ರಿಂದ 120 compressions.",
+      rhythm_check_10s: "10 ಸೆಕೆಂಡ್‌ಗಳಲ್ಲಿ rhythm check. CPR ನಿಲ್ಲಿಸಲು ಸಿದ್ಧರಾಗಿ.",
+      rosc_achieved: "ROSC ಸಾಧಿಸಲಾಗಿದೆ! Post cardiac arrest care ಪ್ರಾರಂಭಿಸಿ.",
+      check_responsiveness: "ಭುಜಗಳನ್ನು ಅಲ್ಲಾಡಿಸಿ response ಪರೀಕ್ಷಿಸಿ.",
+      call_for_help: "Emergency response ಸಕ್ರಿಯಗೊಳಿಸಿ. AED ತನ್ನಿ.",
+      check_pulse: "Carotid pulse ಪರೀಕ್ಷಿಸಿ.",
+      attach_monitor: "Defibrillator pads ಜೋಡಿಸಿ.",
+      shockable: "VF ಅಥವಾ VT ಪತ್ತೆಯಾಗಿದೆ. Defibrillation ಸಿದ್ಧಪಡಿಸಿ.",
+      non_shockable: "Non shockable rhythm. CPR ಮುಂದುವರಿಸಿ. Epinephrine ನೀಡಿ.",
+      consider_causes: "Reversible causes ಹುಡುಕಿ.",
+      cardioversion_done: "Cardioversion ಮುಗಿದಿದೆ. ರೋಗಿಯ response ಪರೀಕ್ಷಿಸಿ.",
+      good_cpr: "CPR ಚೆನ್ನಾಗಿ ನಡೆಯುತ್ತಿದೆ.",
+      cycle_complete: "CPR cycle ಮುಗಿದಿದೆ. Rhythm check ಸಿದ್ಧ.",
     },
-    gu: { // Gujarati
-      shock: "Defibrillation નો સમય છે. તરત જ shock આપો.",
-      rosc_check: "ROSC ની તપાસ કરો. CPR બંધ કરો, pulse અને rhythm તપાસો.",
-      epinephrine: "Epinephrine નો સમય છે. હવે એક milligram આપો.",
-      amiodarone_300: "Amiodarone નો સમય છે. ૩૦૦ milligram આપો.",
-      amiodarone_150: "Amiodarone નો સમય છે. ૧૫૦ milligram આપો.",
-      atropine: "Atropine ૧.૦ milligram આપો.",
-      adenosine: "Adenosine rapid bolus નો વિચાર કરો.",
-      pacing: "Transcutaneous pacing અથવા infusion નો વિચાર કરો.",
-      unstable: "Rhythm unstable છે. Synchronized cardioversion તૈયાર કરો.",
-      start_cpr: "હમણાં જ CPR શરૂ કરો.",
-      rhythm_check_10s: "દસ સેકન્ડમાં rhythm check માટે તૈયાર રહો.",
+    gu: {
+      shock: "Defibrillation નો સમય. બધા દૂર ખસો. દર્દીને clear કરો. હવે 200 joule shock આપો.",
+      rosc_check: "CPR બંધ કરો. Pulse અને rhythm તપાસો. ROSC ની તપાસ કરો.",
+      epinephrine: "Epinephrine નો સમય. હવે એક milligram IV અથવા IO push આપો.",
+      amiodarone_300: "300 milligram Amiodarone IV આપો.",
+      amiodarone_150: "150 milligram Amiodarone આપો.",
+      atropine: "Atropine એક milligram IV આપો.",
+      adenosine: "Adenosine છ milligram rapid bolus આપો.",
+      pacing: "Transcutaneous pacing અથવા Dopamine infusion શરૂ કરો.",
+      unstable: "દર્દી unstable છે. Synchronized cardioversion માટે તૈયાર રહો.",
+      start_cpr: "CPR શરૂ કરો. દર મિનિટે 100 થી 120 compression.",
+      rhythm_check_10s: "10 સેકન્ડમાં rhythm check. CPR રોકવા માટે તૈયાર રહો.",
+      rosc_achieved: "ROSC મળ્યું! Post cardiac arrest care શરૂ કરો.",
+      check_responsiveness: "ખભા ઢક રિસ્પોન્સ તપાસો.",
+      call_for_help: "Emergency response activate કરો. AED લઈ આવો.",
+      check_pulse: "Carotid pulse તપાસો.",
+      attach_monitor: "Defibrillator pads જોડો.",
+      shockable: "VF અથવા VT મળ્યું. Defibrillation તૈયાર કરો.",
+      non_shockable: "Non shockable rhythm. CPR ચાલુ રાખો. Epinephrine આપો.",
+      consider_causes: "Reversible causes શોધો.",
+      cardioversion_done: "Cardioversion પૂર્ણ. દર્દીનો response જુઓ.",
+      good_cpr: "CPR સારી ચાલી રહી છે.",
+      cycle_complete: "CPR cycle પૂર્ણ. Rhythm check માટે તૈયાર.",
     },
-    pa: { // Punjabi 
-      shock: "Defibrillation ਦਾ ਸਮਾਂ ਹੈ। ਤੁਰੰਤ shock ਦਿਓ।",
-      rosc_check: "ROSC ਦੀ ਜਾਂਚ ਕਰੋ। CPR ਰੋਕੋ, pulse ਅਤੇ rhythm ਦੀ ਜਾਂਚ ਕਰੋ।",
-      epinephrine: "Epinephrine ਦਾ ਸਮਾਂ ਹੈ। ਹੁਣ ਇੱਕ milligram ਦਿਓ।",
-      amiodarone_300: "Amiodarone ਦਾ ਸਮਾਂ ਹੈ। ੩੦੦ milligram ਦਿਓ।",
-      amiodarone_150: "Amiodarone ਦਾ ਸਮਾਂ ਹੈ। ੧੫੦ milligram ਦਿਓ।",
-      atropine: "Atropine ੧.੦ milligram ਦਿਓ।",
-      adenosine: "Adenosine rapid bolus ਬਾਰੇ ਵਿਚਾਰ ਕਰੋ।",
-      pacing: "Transcutaneous pacing ਜਾਂ infusion ਬਾਰੇ ਵਿਚਾਰ ਕਰੋ।",
-      unstable: "Rhythm unstable ਹੈ। Synchronized cardioversion ਤਿਆਰ ਕਰੋ।",
-      start_cpr: "ਹੁਣੇ CPR ਸ਼ੁਰੂ ਕਰੋ।",
-      rhythm_check_10s: "ਦਸ ਸਕਿੰਟ ਵਿੱਚ rhythm check ਲਈ ਤਿਆਰ ਰਹੋ।",
+    pa: {
+      shock: "Defibrillation ਦਾ ਸਮਾਂ। ਸਾਰੇ ਪਰੇ ਹੋ ਜਾਓ। ਮਰੀਜ਼ ਨੂੰ clear ਕਰੋ। ਹੁਣ 200 joule shock ਦਿਓ।",
+      rosc_check: "CPR ਰੋਕੋ। Pulse ਅਤੇ rhythm ਦੀ ਜਾਂਚ ਕਰੋ। ROSC ਦੀ ਜਾਂਚ ਕਰੋ।",
+      epinephrine: "Epinephrine ਦਾ ਸਮਾਂ। ਹੁਣ ਇੱਕ milligram IV ਜਾਂ IO push ਦਿਓ।",
+      amiodarone_300: "300 milligram Amiodarone IV ਦਿਓ।",
+      amiodarone_150: "150 milligram Amiodarone ਦਿਓ।",
+      atropine: "Atropine ਇੱਕ milligram IV ਦਿਓ।",
+      adenosine: "Adenosine ਛੇ milligram rapid bolus ਦਿਓ।",
+      pacing: "Transcutaneous pacing ਜਾਂ Dopamine infusion ਸ਼ੁਰੂ ਕਰੋ।",
+      unstable: "ਮਰੀਜ਼ unstable ਹੈ। Synchronized cardioversion ਲਈ ਤਿਆਰ ਰਹੋ।",
+      start_cpr: "CPR ਸ਼ੁਰੂ ਕਰੋ। ਪ੍ਰਤੀ ਮਿੰਟ 100 ਤੋਂ 120 compression।",
+      rhythm_check_10s: "10 ਸਕਿੰਟਾਂ ਵਿੱਚ rhythm check। CPR ਰੋਕਣ ਲਈ ਤਿਆਰ ਰਹੋ।",
+      rosc_achieved: "ROSC ਮਿਲ ਗਿਆ! Post cardiac arrest care ਸ਼ੁਰੂ ਕਰੋ।",
+      check_responsiveness: "ਮੋਢਿਆਂ ਨੂੰ ਹਿਲਾ ਕੇ response ਜਾਂਚੋ।",
+      call_for_help: "Emergency response ਚਾਲੂ ਕਰੋ। AED ਲਿਆਓ।",
+      check_pulse: "Carotid pulse ਜਾਂਚੋ।",
+      attach_monitor: "Defibrillator pads ਲਗਾਓ।",
+      shockable: "VF ਜਾਂ VT ਮਿਲਿਆ। Defibrillation ਤਿਆਰ ਕਰੋ।",
+      non_shockable: "Non shockable rhythm। CPR ਜਾਰੀ ਰੱਖੋ। Epinephrine ਦਿਓ।",
+      consider_causes: "Reversible causes ਲੱਭੋ।",
+      cardioversion_done: "Cardioversion ਮੁਕੰਮਲ। ਮਰੀਜ਼ ਦਾ response ਦੇਖੋ।",
+      good_cpr: "CPR ਵਧੀਆ ਚੱਲ ਰਹੀ ਹੈ।",
+      cycle_complete: "CPR cycle ਮੁਕੰਮਲ। Rhythm check ਲਈ ਤਿਆਰ।",
     },
-    or: { // Odia
-      shock: "Defibrillation ର ସମୟ। ଶୀଘ୍ର shock ଦିଅନ୍ତୁ।",
-      rosc_check: "ROSC ଯାଞ୍ଚ କରନ୍ତୁ। CPR ବନ୍ଦ କରନ୍ତୁ, pulse ଏବଂ rhythm ଯାଞ୍ଚ କରନ୍ତୁ।",
-      epinephrine: "Epinephrine ଦେବାର ସମୟ। ବର୍ତ୍ତମାନ ଏକ milligram ଦିଅନ୍ତୁ।",
-      amiodarone_300: "Amiodarone ର ସମୟ। ୩୦୦ milligram ଦିଅନ୍ତୁ।",
-      amiodarone_150: "Amiodarone ର ସମୟ। ୧୫୦ milligram ଦିଅନ୍ତୁ।",
-      atropine: "Atropine ୧.୦ milligram ଦିଅନ୍ତୁ।",
-      adenosine: "Adenosine rapid bolus ବିଷୟରେ ବିଚାର କରନ୍ତୁ।",
-      pacing: "Transcutaneous pacing କିମ୍ବା infusion ବିଷୟରେ ବିଚାର କରନ୍ତୁ।",
-      unstable: "Rhythm unstable ଅଛି। Synchronized cardioversion ପ୍ରସ୍ତୁତ କରନ୍ତୁ।",
-      start_cpr: "ଏବେ CPR ଆରମ୍ଭ କରନ୍ତୁ।",
-      rhythm_check_10s: "ଦଶ ସେକେଣ୍ଡରେ rhythm check ପାଇଁ ପ୍ରସ୍ତୁତ ରୁହନ୍ତୁ।",
+    or: {
+      shock: "Defibrillation ର ସମୟ। ସଲ ଦୂରରେ ଯାଆନ୍ତୁ। ରୋଗୀଙ୍କୁ clear କରନ୍ତୁ। ଏବେ 200 joule shock ଦିଅନ୍ତୁ।",
+      rosc_check: "CPR ବନ୍ଦ କରନ୍ତୁ। Pulse ଏବଂ rhythm ଯାଞ୍ଚ କରନ୍ତୁ। ROSC ଯାଞ୍ଚ କରନ୍ତୁ।",
+      epinephrine: "Epinephrine ର ସମୟ। ଏବେ ଏକ milligram IV ବା IO push ଦିଅନ୍ତୁ।",
+      amiodarone_300: "300 milligram Amiodarone IV ଦିଅନ୍ତୁ।",
+      amiodarone_150: "150 milligram Amiodarone ଦିଅନ୍ତୁ।",
+      atropine: "Atropine ଏକ milligram IV ଦିଅନ୍ତୁ।",
+      adenosine: "Adenosine ଛଅ milligram rapid bolus ଦିଅନ୍ତୁ।",
+      pacing: "Transcutaneous pacing କିମ୍ବା Dopamine infusion ଆରମ୍ଭ କରନ୍ତୁ।",
+      unstable: "ରୋଗୀ unstable। Synchronized cardioversion ପ୍ରସ୍ତୁତ କରନ୍ତୁ।",
+      start_cpr: "CPR ଆରମ୍ଭ କରନ୍ତୁ। ପ୍ରତି ମିନିଟ୍ 100 ରୁ 120 compression।",
+      rhythm_check_10s: "10 ସେକେଣ୍ଡରେ rhythm check। CPR ଆଟୋ ୟ ପ୍ରସ୍ତୁତ।",
+      rosc_achieved: "ROSC ମିଳିଲା! Post cardiac arrest care ଆରମ୍ଭ କରନ୍ତୁ।",
+      check_responsiveness: "କାନ୍ଧ ହଲାଇ response ଯାଞ୍ଚ କରନ୍ତୁ।",
+      call_for_help: "Emergency response ସକ୍ରିୟ କରନ୍ତୁ। AED ଆଣନ୍ତୁ।",
+      check_pulse: "Carotid pulse ଯାଞ୍ଚ କରନ୍ତୁ।",
+      attach_monitor: "Defibrillator pads ଲଗାଆନ୍ତୁ।",
+      shockable: "VF ବା VT ମିଳିଲା। Defibrillation ପ୍ରସ୍ତୁତ କରନ୍ତୁ।",
+      non_shockable: "Non shockable rhythm। CPR ଜାରି ରଖନ୍ତୁ। Epinephrine ଦିଅନ୍ତୁ।",
+      consider_causes: "Reversible causes ଖୋଜନ୍ତୁ।",
+      cardioversion_done: "Cardioversion ସଂପୂର୍ଣ। ରୋଗୀ response ଦେଖନ୍ତୁ।",
+      good_cpr: "CPR ଭଲ ଚାଲୁଛି।",
+      cycle_complete: "CPR cycle ସଂପୂର୍ଣ। Rhythm check ପ୍ରସ୍ତୁତ।",
     },
   };
 
@@ -965,36 +1064,65 @@ export default function ACLSTool() {
   // Voice prompt due action triggers
   useEffect(() => {
     if (dueAction === 'shock') {
-      speakPrompt("Defibrillation due now. Deliver shock immediately.", 'shock');
+      speakPrompt("Defibrillation due. All clear! Stand back! Deliver 200 joule shock NOW.", 'shock');
     } else if (dueAction === 'rosc_check') {
-      speakPrompt("Check for ROSC. Stop C P R, check pulse and rhythm.", 'rosc_check');
+      speakPrompt("Stop CPR. Check for pulse and rhythm. Check for Return of Spontaneous Circulation.", 'rosc_check');
     }
   }, [dueAction, speakPrompt]);
 
   // Voice prompt step triggers
   useEffect(() => {
     switch (currentStep) {
-      case 'give_epinephrine':
-        speakPrompt("Epinephrine due. Give 1 milligram now.", 'epinephrine');
+      case 'check_responsiveness':
+        speakPrompt("Tap shoulders firmly and shout: Are you okay? Check for no response.", 'check_responsiveness');
         break;
-      case 'give_amiodarone':
-        const amioKey = shockCount >= 5 ? 'amiodarone_150' : 'amiodarone_300';
-        speakPrompt(`Amiodarone due. Give ${shockCount >= 5 ? '150' : '300'} milligrams now.`, amioKey);
+      case 'call_for_help':
+        speakPrompt("Call for help NOW. Activate emergency response. Get the AED immediately.", 'call_for_help');
         break;
-      case 'give_atropine':
-        speakPrompt("Give Atropine 1.0 milligram now.", 'atropine');
-        break;
-      case 'tachycardia_svt_adenosine':
-        speakPrompt("Consider Adenosine rapid bolus now.", 'adenosine');
-        break;
-      case 'consider_pacing':
-        speakPrompt("Consider transcutaneous pacing or infusion.", 'pacing');
-        break;
-      case 'tachycardia_unstable':
-        speakPrompt("Unstable rhythm. Prepare synchronized cardioversion.", 'unstable');
+      case 'check_pulse_breathing':
+        speakPrompt("Check carotid pulse and breathing simultaneously. You have 5 to 10 seconds maximum.", 'check_pulse');
         break;
       case 'start_cpr':
-        speakPrompt("Start C P R now.", 'start_cpr');
+        speakPrompt("Start high quality CPR now. 30 compressions then 2 breaths. Rate 100 to 120 per minute. Depth 2 to 2.4 inches. Allow full chest recoil.", 'start_cpr');
+        break;
+      case 'attach_monitor':
+        speakPrompt("Attach defibrillator pads now. Apply to chest and check rhythm.", 'attach_monitor');
+        break;
+      case 'shockable_rhythm':
+        speakPrompt("Shockable rhythm identified: Ventricular Fibrillation or Ventricular Tachycardia. Charge defibrillator to 200 joules. Minimize CPR interruption.", 'shockable');
+        break;
+      case 'non_shockable_rhythm':
+        speakPrompt("Non-shockable rhythm: Asystole or PEA. Resume CPR immediately. Give Epinephrine 1 milligram IV push as soon as possible.", 'non_shockable');
+        break;
+      case 'give_epinephrine':
+        speakPrompt("Epinephrine due now. Give 1 milligram intravenous push. Flush with 20 mL saline. Next dose in 3 to 5 minutes.", 'epinephrine');
+        break;
+      case 'give_amiodarone': {
+        const amioKey = shockCount >= 5 ? 'amiodarone_150' : 'amiodarone_300';
+        const amioDose = shockCount >= 5 ? '150' : '300';
+        speakPrompt(`Amiodarone due now. Give ${amioDose} milligrams intravenous push after 3 shocks. Flush with dextrose 5 percent.`, amioKey);
+        break;
+      }
+      case 'give_atropine':
+        speakPrompt("Give Atropine 1 milligram IV push for symptomatic bradycardia. May repeat every 3 to 5 minutes. Maximum 3 milligrams total.", 'atropine');
+        break;
+      case 'tachycardia_svt_adenosine':
+        speakPrompt("Give Adenosine 6 milligrams rapid IV push followed immediately by 20 mL saline flush. If no response, give 12 milligrams.", 'adenosine');
+        break;
+      case 'consider_pacing':
+        speakPrompt("Atropine maximum dose reached. Consider Transcutaneous pacing now. Alternative: Dopamine infusion 5 to 20 micrograms per kilogram per minute.", 'pacing');
+        break;
+      case 'tachycardia_unstable':
+        speakPrompt("Patient is hemodynamically unstable. Prepare for synchronized cardioversion immediately. Consider sedation. Charge to 100 to 200 joules.", 'unstable');
+        break;
+      case 'consider_cause':
+        speakPrompt("Search for reversible causes. Remember the H's and T's: Hypovolemia, Hypoxia, Acidosis, Hypo or Hyperkalemia, Hypothermia, Tension pneumothorax, Tamponade, Toxins, Pulmonary embolism, Myocardial infarction.", 'consider_causes');
+        break;
+      case 'rosc_achieved':
+        speakPrompt("ROSC achieved! Return of Spontaneous Circulation confirmed. Begin post cardiac arrest care. Target oxygen saturation 94 to 98 percent. Target systolic blood pressure above 90.", 'rosc_achieved');
+        break;
+      case 'tachycardia_cardioversion':
+        speakPrompt("Synchronized cardioversion is ready. Ensure patient is sedated. All staff clear. Deliver shock now.", 'cardioversion_done');
         break;
     }
   }, [currentStep, speakPrompt, shockCount]);
