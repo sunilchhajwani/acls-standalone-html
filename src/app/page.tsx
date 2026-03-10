@@ -267,7 +267,7 @@ export default function ACLSTool() {
   // New Feature state
   const [metronomeEnabled, setMetronomeEnabled] = useState(true);
   const [voicePromptsEnabled, setVoicePromptsEnabled] = useState(true);
-  const [voiceLanguage, setVoiceLanguage] = useState<'en' | 'hi' | 'mr' | 'ta' | 'te' | 'bn' | 'kn'>('en');
+  const [voiceLanguage, setVoiceLanguage] = useState<'en' | 'hi' | 'mr' | 'ta' | 'te' | 'bn' | 'kn' | 'gu' | 'pa' | 'or'>('en');
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   // Megacode / Training State
@@ -434,6 +434,45 @@ export default function ACLSTool() {
       start_cpr: "ಈಗಲೇ CPR ಪ್ರಾರಂಭಿಸಿ.",
       rhythm_check_10s: "ಹತ್ತು ಸೆಕೆಂಡುಗಳಲ್ಲಿ rhythm check ಗಾಗಿ ಸಿದ್ಧರಾಗಿ.",
     },
+    gu: { // Gujarati
+      shock: "Defibrillation નો સમય છે. તરત જ shock આપો.",
+      rosc_check: "ROSC ની તપાસ કરો. CPR બંધ કરો, pulse અને rhythm તપાસો.",
+      epinephrine: "Epinephrine નો સમય છે. હવે એક milligram આપો.",
+      amiodarone_300: "Amiodarone નો સમય છે. ૩૦૦ milligram આપો.",
+      amiodarone_150: "Amiodarone નો સમય છે. ૧૫૦ milligram આપો.",
+      atropine: "Atropine ૧.૦ milligram આપો.",
+      adenosine: "Adenosine rapid bolus નો વિચાર કરો.",
+      pacing: "Transcutaneous pacing અથવા infusion નો વિચાર કરો.",
+      unstable: "Rhythm unstable છે. Synchronized cardioversion તૈયાર કરો.",
+      start_cpr: "હમણાં જ CPR શરૂ કરો.",
+      rhythm_check_10s: "દસ સેકન્ડમાં rhythm check માટે તૈયાર રહો.",
+    },
+    pa: { // Punjabi 
+      shock: "Defibrillation ਦਾ ਸਮਾਂ ਹੈ। ਤੁਰੰਤ shock ਦਿਓ।",
+      rosc_check: "ROSC ਦੀ ਜਾਂਚ ਕਰੋ। CPR ਰੋਕੋ, pulse ਅਤੇ rhythm ਦੀ ਜਾਂਚ ਕਰੋ।",
+      epinephrine: "Epinephrine ਦਾ ਸਮਾਂ ਹੈ। ਹੁਣ ਇੱਕ milligram ਦਿਓ।",
+      amiodarone_300: "Amiodarone ਦਾ ਸਮਾਂ ਹੈ। ੩੦੦ milligram ਦਿਓ।",
+      amiodarone_150: "Amiodarone ਦਾ ਸਮਾਂ ਹੈ। ੧੫੦ milligram ਦਿਓ।",
+      atropine: "Atropine ੧.੦ milligram ਦਿਓ।",
+      adenosine: "Adenosine rapid bolus ਬਾਰੇ ਵਿਚਾਰ ਕਰੋ।",
+      pacing: "Transcutaneous pacing ਜਾਂ infusion ਬਾਰੇ ਵਿਚਾਰ ਕਰੋ।",
+      unstable: "Rhythm unstable ਹੈ। Synchronized cardioversion ਤਿਆਰ ਕਰੋ।",
+      start_cpr: "ਹੁਣੇ CPR ਸ਼ੁਰੂ ਕਰੋ।",
+      rhythm_check_10s: "ਦਸ ਸਕਿੰਟ ਵਿੱਚ rhythm check ਲਈ ਤਿਆਰ ਰਹੋ।",
+    },
+    or: { // Odia
+      shock: "Defibrillation ର ସମୟ। ଶୀଘ୍ର shock ଦିଅନ୍ତୁ।",
+      rosc_check: "ROSC ଯାଞ୍ଚ କରନ୍ତୁ। CPR ବନ୍ଦ କରନ୍ତୁ, pulse ଏବଂ rhythm ଯାଞ୍ଚ କରନ୍ତୁ।",
+      epinephrine: "Epinephrine ଦେବାର ସମୟ। ବର୍ତ୍ତମାନ ଏକ milligram ଦିଅନ୍ତୁ।",
+      amiodarone_300: "Amiodarone ର ସମୟ। ୩୦୦ milligram ଦିଅନ୍ତୁ।",
+      amiodarone_150: "Amiodarone ର ସମୟ। ୧୫୦ milligram ଦିଅନ୍ତୁ।",
+      atropine: "Atropine ୧.୦ milligram ଦିଅନ୍ତୁ।",
+      adenosine: "Adenosine rapid bolus ବିଷୟରେ ବିଚାର କରନ୍ତୁ।",
+      pacing: "Transcutaneous pacing କିମ୍ବା infusion ବିଷୟରେ ବିଚାର କରନ୍ତୁ।",
+      unstable: "Rhythm unstable ଅଛି। Synchronized cardioversion ପ୍ରସ୍ତୁତ କରନ୍ତୁ।",
+      start_cpr: "ଏବେ CPR ଆରମ୍ଭ କରନ୍ତୁ।",
+      rhythm_check_10s: "ଦଶ ସେକେଣ୍ଡରେ rhythm check ପାଇଁ ପ୍ରସ୍ତୁତ ରୁହନ୍ତୁ।",
+    },
   };
 
   // Refs
@@ -533,6 +572,9 @@ export default function ACLSTool() {
         te: { code: 'te', names: ['Google తెలుగు', 'Telugu'] },
         bn: { code: 'bn', names: ['Google বাংলা', 'Bengali'] },
         kn: { code: 'kn', names: ['Google ಕನ್ನಡ', 'Kannada'] },
+        gu: { code: 'gu', names: ['Google ગુજરાતી', 'Gujarati'] },
+        pa: { code: 'pa', names: ['Google ਪੰਜਾਬੀ', 'Punjabi'] },
+        or: { code: 'or', names: ['Google ଓଡ଼ିଆ', 'Odia', 'Oriya'] },
       };
 
       const config = langMap[voiceLanguage];
@@ -2508,6 +2550,9 @@ EVENT TIMELINE
                           <option value="te">తెలుగు (Telugu)</option>
                           <option value="bn">বাংলা (Bengali)</option>
                           <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                          <option value="gu">ગુજરાતી (Gujarati)</option>
+                          <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                          <option value="or">ଓଡ଼ିଆ (Odia)</option>
                         </select>
                       </div>
 
