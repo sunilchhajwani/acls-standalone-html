@@ -653,59 +653,69 @@ export default function ACLSTool() {
   const speakPrompt = useCallback((message: string, translationKey?: keyof typeof TRANSLATIONS.hi) => {
     if (!voicePromptsEnabled || !window.speechSynthesis) return;
 
+    const actualMessage = (voiceLanguage !== 'en' && translationKey && TRANSLATIONS[voiceLanguage])
+      ? TRANSLATIONS[voiceLanguage][translationKey] || message
+      : message;
+
+    if (!actualMessage) {
+      console.warn("No message to speak");
+      return;
+    }
+
     // Stop previous and clear queue to ensure priority for the new alert
+    // Safari bug: cancel() immediately followed by speak() fails silently.
     window.speechSynthesis.cancel();
 
-    const actualMessage = (voiceLanguage !== 'en' && translationKey) ? TRANSLATIONS[voiceLanguage][translationKey] : message;
-    const utterance = new SpeechSynthesisUtterance(actualMessage);
+    setTimeout(() => {
+      const utterance = new SpeechSynthesisUtterance(actualMessage);
 
-    // Try to find a high-quality voice for the selected language
-    let selectedVoice: SpeechSynthesisVoice | undefined = undefined;
+      // Try to find a high-quality voice for the selected language
+      let selectedVoice: SpeechSynthesisVoice | undefined = undefined;
 
-    if (voiceLanguage !== 'en') {
-      // Mapping internal codes to browser language codes
-      const langMap: Record<string, { code: string; names: string[] }> = {
-        hi: { code: 'hi', names: ['Lekha', 'Google हिन्दी', 'Hindi'] },
-        mr: { code: 'mr', names: ['Google मराठी', 'Marathi'] },
-        ta: { code: 'ta', names: ['Google தமிழ்', 'Tamil'] },
-        te: { code: 'te', names: ['Google తెలుగు', 'Telugu'] },
-        bn: { code: 'bn', names: ['Google বাংলা', 'Bengali'] },
-        kn: { code: 'kn', names: ['Google ಕನ್ನಡ', 'Kannada'] },
-        gu: { code: 'gu', names: ['Google ગુજરાતી', 'Gujarati'] },
-        pa: { code: 'pa', names: ['Google ਪੰਜਾਬੀ', 'Punjabi'] },
-        or: { code: 'or', names: ['Google ଓଡ଼ିଆ', 'Odia', 'Oriya'] },
-      };
+      if (voiceLanguage !== 'en') {
+        const langMap: Record<string, { code: string; names: string[] }> = {
+          hi: { code: 'hi', names: ['Lekha', 'Google हिन्दी', 'Hindi'] },
+          mr: { code: 'mr', names: ['Google मराठी', 'Marathi'] },
+          ta: { code: 'ta', names: ['Google தமிழ்', 'Tamil'] },
+          te: { code: 'te', names: ['Google తెలుగు', 'Telugu'] },
+          bn: { code: 'bn', names: ['Google বাংলা', 'Bengali'] },
+          kn: { code: 'kn', names: ['Google ಕನ್ನಡ', 'Kannada'] },
+          gu: { code: 'gu', names: ['Google ગુજરાતી', 'Gujarati'] },
+          pa: { code: 'pa', names: ['Google પੰਜਾਬੀ', 'Punjabi'] },
+          or: { code: 'or', names: ['Google ଓଡ଼ିଆ', 'Odia', 'Oriya'] },
+        };
 
-      const config = langMap[voiceLanguage];
-      if (config) {
-        for (const name of config.names) {
-          selectedVoice = availableVoices.find(v => v.name.includes(name) && v.lang.startsWith(config.code));
+        const config = langMap[voiceLanguage];
+        if (config) {
+          for (const name of config.names) {
+            selectedVoice = availableVoices.find(v => v.name.includes(name) && v.lang.startsWith(config.code));
+            if (selectedVoice) break;
+          }
+          if (!selectedVoice) selectedVoice = availableVoices.find(v => v.lang.startsWith(config.code));
+        }
+      }
+
+      // Fallback to English if no regional voice found OR if language is English
+      if (!selectedVoice) {
+        const preferredVoices = ['Google US English', 'Samantha', 'Microsoft David', 'Daniel'];
+        for (const name of preferredVoices) {
+          selectedVoice = availableVoices.find(v => v.name.includes(name) && v.lang.startsWith('en'));
           if (selectedVoice) break;
         }
-        if (!selectedVoice) selectedVoice = availableVoices.find(v => v.lang.startsWith(config.code));
+        if (!selectedVoice) selectedVoice = availableVoices.find(v => v.lang.startsWith('en'));
       }
-    }
 
-    // Fallback to English if no regional voice found OR if language is English
-    if (!selectedVoice) {
-      const preferredVoices = ['Google US English', 'Samantha', 'Microsoft David', 'Daniel'];
-      for (const name of preferredVoices) {
-        selectedVoice = availableVoices.find(v => v.name.includes(name) && v.lang.startsWith('en'));
-        if (selectedVoice) break;
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
       }
-      if (!selectedVoice) selectedVoice = availableVoices.find(v => v.lang.startsWith('en'));
-    }
 
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
-    }
+      utterance.rate = voiceLanguage === 'en' ? 1.1 : 1.0;
+      utterance.pitch = 1.0;
+      utterance.volume = 1.0;
 
-    utterance.rate = voiceLanguage === 'en' ? 1.1 : 1.0;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-
-    window.speechSynthesis.speak(utterance);
-  }, [voicePromptsEnabled, availableVoices, voiceLanguage, TRANSLATIONS]);
+      window.speechSynthesis.speak(utterance);
+    }, 50);
+  }, [voicePromptsEnabled, availableVoices, voiceLanguage]);
 
   const checkScenarioProgression = useCallback((action: string) => {
     if (!isMegacodeMode || !activeScenario) return;
